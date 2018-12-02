@@ -13,7 +13,7 @@ use SimpleMail\SimpleMail;
 $config = new Config;
 $config->load('./config/config.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && $_ISSET($_GET['form-name'])) {
     $name    = stripslashes(trim($_GET['form-name']));
     $email   = stripslashes(trim($_GET['form-email']));
     $phone   = stripslashes(trim($_GET['form-phone']));
