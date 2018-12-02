@@ -13,7 +13,7 @@ use SimpleMail\SimpleMail;
 $config = new Config;
 $config->load('./config/config.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $name    = stripslashes(trim($_GET['form-name']));
     $email   = stripslashes(trim($_GET['form-email']));
     $phone   = stripslashes(trim($_GET['form-phone']));
@@ -70,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1>Simple PHP Contact Form</h1>
-            <p>A Simple Contact Form developed in PHP with HTML5 Form validation. Has a fallback in <strike>jQuery</strike> pure JavaScript for browsers that do not support HTML5 form validation.</p>
+            <h1>PII Contact Form</h1>
+            <p>Give us your information. You can trust us :). We will not leak your information.</p>
         </div>
     </div>
     <?php if(!empty($emailSent)): ?>
