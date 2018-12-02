@@ -14,11 +14,11 @@ $config = new Config;
 $config->load('./config/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name    = stripslashes(trim($_POST['form-name']));
-    $email   = stripslashes(trim($_POST['form-email']));
-    $phone   = stripslashes(trim($_POST['form-phone']));
-    $subject = stripslashes(trim($_POST['form-subject']));
-    $message = stripslashes(trim($_POST['form-message']));
+    $name    = stripslashes(trim($_GET['form-name']));
+    $email   = stripslashes(trim($_GET['form-email']));
+    $phone   = stripslashes(trim($_GET['form-phone']));
+    $subject = stripslashes(trim($_GET['form-subject']));
+    $message = stripslashes(trim($_GET['form-message']));
     $pattern = '/[\r\n]|Content-Type:|Bcc:|Cc:/i';
 
     if (preg_match($pattern, $name) || preg_match($pattern, $email) || preg_match($pattern, $subject)) {
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
     <div class="col-md-6 col-md-offset-3">
-        <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" enctype="application/x-www-form-urlencoded" id="contact-form" class="form-horizontal" method="post">
+        <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" enctype="application/x-www-form-urlencoded" id="contact-form" class="form-horizontal" method="GET">
             <div class="form-group">
                 <label for="form-name" class="col-lg-2 control-label"><?php echo $config->get('fields.name'); ?></label>
                 <div class="col-lg-10">
