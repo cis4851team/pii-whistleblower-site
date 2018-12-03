@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
     <div class="jumbotron">
         <div class="container">
             <h1>PII Contact Form</h1>
-            <p>Give us your information. You can trust us :). We will not leak your information.</p>
+            <p>Give us your information. You can trust us!</p>
         </div>
     </div>
     <?php if(!empty($emailSent)): ?>
