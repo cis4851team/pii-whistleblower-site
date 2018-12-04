@@ -56,8 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
 </head>
 <body>
     <div class="jumbotron">
-        <div class="container">
-            <h1>Report any illegal or illicit activities anonymously.</h1>
+        <div class="container banner">
+            <h1 class="banner">Report any illegal or illicit activities anonymously.</h1>
             <p>*Powered by Equifacts*</p>
         </div>
     </div>
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
         <?php endif; ?>
 
     <div class="col-md-6 col-md-offset-3">
-        <p>Submit an anonymous tip. To protect your privacy, we ask that no personally identifiable information be included in your message.</p>
+        <p style="float:left">Submit an anonymous tip. To protect your privacy, we ask that no personally identifiable information be included in your message.</p>
         <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" enctype="application/x-www-form-urlencoded" id="secure-form" class="form-horizontal" method="GET">
             <div class="form-group">
                 <div class="col-lg-10">
@@ -81,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <button type="submit" class="btn btn-default"><?php echo $config->get('fields.btn-send'); ?></button>
+                <div class="col-lg-10">
+                    <button type="submit" class="btn btn-default" style="float: right"><?php echo $config->get('fields.btn-send'); ?></button>
                 </div>
             </div>
         </form>
