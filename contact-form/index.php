@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1>Report any dangerous, illegal or illicit activities anonymously.</h1>
+            <h1>Report any illegal or illicit activities anonymously.</h1>
             <p>*Powered by Equifacts*</p>
         </div>
     </div>
