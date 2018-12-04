@@ -10,10 +10,10 @@ return [
     ],
     'messages' => [
         'error'   => 'There was an error sending the message, please try again later.',
-        'success' => 'Your message has been sent successfully.'
+        'success' => 'Thank you for your .'
     ],
     'fields' => [
         'name'     => 'Anonymous Tip',
-        'btn-send' => 'Submit Anonymously'
+        'btn-send' => 'Safe Submit'
     ]
 ];

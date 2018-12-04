@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1>Report any crimes or illegal activities anonymously.</h1>
+            <h1>Report any dangerous, illegal or illicit activities anonymously.</h1>
             <p>*Powered by Equifacts*</p>
         </div>
     </div>
@@ -76,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
         <p>Submit an anonymous tip. To protect your privacy, we ask that no personally identifiable information be included in your message.</p>
         <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" enctype="application/x-www-form-urlencoded" id="secure-form" class="form-horizontal" method="GET">
             <div class="form-group">
-                <label for="form-name" class="col-lg-2 control-label"><?php echo $config->get('fields.name'); ?></label>
                 <div class="col-lg-10">
                     <textarea rows="3" class="form-control" id="form-name" name="form-name" placeholder="<?php echo $config->get('fields.name'); ?>" required></textarea>
                 </div>
