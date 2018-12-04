@@ -2,22 +2,18 @@
 
 return [
     'subject' => [
-        'prefix' => '[Contact Form]'
+        'prefix' => '[Private Form]'
     ],
     'emails' => [
         'to'   => '',
         'from' => ''
     ],
     'messages' => [
-        'error'   => 'There was an error sending your message, please try again later.',
+        'error'   => 'There was an error sending the message, please try again later.',
         'success' => 'Your message has been sent successfully.'
     ],
     'fields' => [
-        'name'     => 'Name',
-        'email'    => 'Email',
-        'phone'    => 'Phone',
-        'subject'  => 'Subject',
-        'message'  => 'Message',
-        'btn-send' => 'Send'
+        'name'     => 'Anonymous Tip',
+        'btn-send' => 'Submit Anonymously'
     ]
 ];

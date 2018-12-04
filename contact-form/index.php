@@ -12,30 +12,19 @@ use SimpleMail\SimpleMail;
 
 $config = new Config;
 $config->load('./config/config.php');
+$subject = "Secure Message";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
     $name    = stripslashes(trim($_GET['form-name']));
-    $email   = stripslashes(trim($_GET['form-email']));
-    $phone   = stripslashes(trim($_GET['form-phone']));
-    $subject = stripslashes(trim($_GET['form-subject']));
-    $message = stripslashes(trim($_GET['form-message']));
     $pattern = '/[\r\n]|Content-Type:|Bcc:|Cc:/i';
 
-    if (preg_match($pattern, $name) || preg_match($pattern, $email) || preg_match($pattern, $subject)) {
+    if (preg_match($pattern, $name) || preg_match($pattern, $subject)) {
         die("Header injection detected");
     }
 
     $emailIsValid = filter_var($email, FILTER_VALIDATE_EMAIL);
 
-    if ($name && $email && $emailIsValid && $subject && $message) {
-        $mail = new SimpleMail();
-
-        $mail->setTo($config->get('emails.to'));
-        $mail->setFrom($config->get('emails.from'));
-        $mail->setSender($name);
-        $mail->setSenderEmail($email);
-        $mail->setSubject($config->get('subject.prefix') . ' ' . $subject);
-
+    if ($name) {
         $body = "
         <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
         <html>
@@ -45,9 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
             <body>
                 <h1>{$subject}</h1>
                 <p><strong>{$config->get('fields.name')}:</strong> {$name}</p>
-                <p><strong>{$config->get('fields.email')}:</strong> {$email}</p>
-                <p><strong>{$config->get('fields.phone')}:</strong> {$phone}</p>
-                <p><strong>{$config->get('fields.message')}:</strong> {$message}</p>
             </body>
         </html>";
 
@@ -62,16 +48,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
 ?><!DOCTYPE html>
 <html>
 <head>
-    <title>Simple PHP Contact Form</title>
+    <title>The Whistleblower</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/secret.css">
 </head>
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1>PII Contact Form</h1>
-            <p>Give us your information. You can trust us!</p>
+            <h1>Report any crimes or illegal activities anonymously.</h1>
+            <p>*Powered by Equifacts*</p>
         </div>
     </div>
     <?php if(!empty($emailSent)): ?>
@@ -86,35 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
         <?php endif; ?>
 
     <div class="col-md-6 col-md-offset-3">
-        <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" enctype="application/x-www-form-urlencoded" id="contact-form" class="form-horizontal" method="GET">
+        <p>Submit an anonymous tip. To protect your privacy, we ask that no personally identifiable information be included in your message.</p>
+        <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" enctype="application/x-www-form-urlencoded" id="secure-form" class="form-horizontal" method="GET">
             <div class="form-group">
                 <label for="form-name" class="col-lg-2 control-label"><?php echo $config->get('fields.name'); ?></label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" id="form-name" name="form-name" placeholder="<?php echo $config->get('fields.name'); ?>" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="form-email" class="col-lg-2 control-label"><?php echo $config->get('fields.email'); ?></label>
-                <div class="col-lg-10">
-                    <input type="email" class="form-control" id="form-email" name="form-email" placeholder="<?php echo $config->get('fields.email'); ?>" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="form-phone" class="col-lg-2 control-label"><?php echo $config->get('fields.phone'); ?></label>
-                <div class="col-lg-10">
-                    <input type="tel" class="form-control" id="form-phone" name="form-phone" placeholder="<?php echo $config->get('fields.phone'); ?>">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="form-subject" class="col-lg-2 control-label"><?php echo $config->get('fields.subject'); ?></label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" id="form-subject" name="form-subject" placeholder="<?php echo $config->get('fields.subject'); ?>" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="form-message" class="col-lg-2 control-label"><?php echo $config->get('fields.message'); ?></label>
-                <div class="col-lg-10">
-                    <textarea class="form-control" rows="3" id="form-message" name="form-message" placeholder="<?php echo $config->get('fields.message'); ?>" required></textarea>
+                    <textarea rows="3" class="form-control" id="form-name" name="form-name" placeholder="<?php echo $config->get('fields.name'); ?>" required></textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -128,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
 
     <script type="text/javascript" src="public/js/contact-form.js"></script>
     <script type="text/javascript">
-        new ContactForm('#contact-form');
+        new ContactForm('#secure-form');
     </script>
 </body>
 </html>
