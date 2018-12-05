@@ -18,28 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
     $name    = stripslashes(trim($_GET['form-name']));
     $pattern = '/[\r\n]|Content-Type:|Bcc:|Cc:/i';
 
-    if (preg_match($pattern, $name) || preg_match($pattern, $subject)) {
+    if (preg_match($pattern, $name)) {
         die("Header injection detected");
     }
 
-    $emailIsValid = filter_var($email, FILTER_VALIDATE_EMAIL);
-
     if ($name) {
-        $body = "
-        <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
-        <html>
-            <head>
-                <meta charset=\"utf-8\">
-            </head>
-            <body>
-                <h1>{$subject}</h1>
-                <p><strong>{$config->get('fields.name')}:</strong> {$name}</p>
-            </body>
-        </html>";
-
-        $mail->setHtml($body);
-        $mail->send();
-
         $emailSent = true;
     } else {
         $hasError = true;
