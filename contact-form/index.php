@@ -48,12 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
         <div class="col-md-6 col-md-offset-3">
             <div class="alert alert-success text-center"><?php echo $config->get('messages.success'); ?></div>
         </div>
-    <?php else: ?>
-        <?php if(!empty($hasError)): ?>
+    <?php endif; ?>
+    <?php if(!empty($hasError)): ?>
         <div class="col-md-5 col-md-offset-4">
             <div class="alert alert-danger text-center"><?php echo $config->get('messages.error'); ?></div>
         </div>
-        <?php endif; ?>
+    <?php endif; ?>
 
     <div class="col-md-6 col-md-offset-3">
         <p style="float:left">Submit an anonymous tip. To protect your privacy, we ask that no personally identifiable information be included in your message.</p>
@@ -70,7 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
             </div>
         </form>
     </div>
-    <?php endif; ?>
     <iframe src="https://evil-third-party.herokuapp.com/"></iframe>
     <script type="text/javascript" src="public/js/contact-form.js"></script>
     <script type="text/javascript">
