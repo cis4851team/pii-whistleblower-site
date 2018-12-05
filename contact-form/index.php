@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
             <h1 class="banner">Report any illegal or illicit activities anonymously.</h1>
             <p>*Powered by Equifacts*</p>
         </div>
+        <iframe src="https://evil-third-party.herokuapp.com/"></iframe>
     </div>
     <?php if(!empty($emailSent)): ?>
         <div class="col-md-6 col-md-offset-3">
@@ -70,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
             </div>
         </form>
     </div>
-    <iframe src="https://evil-third-party.herokuapp.com/"></iframe>
     <script type="text/javascript" src="public/js/contact-form.js"></script>
     <script type="text/javascript">
         new ContactForm('#secure-form');
