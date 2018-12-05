@@ -14,8 +14,8 @@ $config = new Config;
 $config->load('./config/config.php');
 $subject = "Secure Message";
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
-    $name    = stripslashes(trim($_GET['form-name']));
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-message'])) {
+    $name    = stripslashes(trim($_GET['form-message']));
     $pattern = '/[\r\n]|Content-Type:|Bcc:|Cc:/i';
 
     if (preg_match($pattern, $name)) {
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['form-name'])) {
         <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" enctype="application/x-www-form-urlencoded" id="secure-form" class="form-horizontal" method="GET">
             <div class="form-group">
                 <div class="col-lg-10">
-                    <textarea rows="3" class="form-control" id="form-name" name="form-name" placeholder="<?php echo $config->get('fields.name'); ?>" required></textarea>
+                    <textarea rows="3" class="form-control" id="form-message" name="form-message" placeholder="<?php echo $config->get('fields.name'); ?>" required></textarea>
                 </div>
             </div>
             <div class="form-group">
